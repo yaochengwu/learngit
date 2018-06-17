@@ -11,3 +11,12 @@
 添加文件
 $ git add filename.txt
 $ git commit -m "file instruction"
+
+查看改动情况
+$ git  log
+
+返回上一版本
+$ git reset --hard HEAD^
+
+查看每一次命令
+$ git reflog
