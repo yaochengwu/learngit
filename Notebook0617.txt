@@ -20,3 +20,12 @@ $ git reset --hard HEAD^
 
 查看每一次命令
 $ git reflog
+
+查看工作区和版本库中文件的差别
+$ git diff HEAD -- filename.txt 
+
+让文件回到最新一次的修改状态
+$ git checkout -- filename.txt
+
+从本地提交到git
+$ git push origin master
