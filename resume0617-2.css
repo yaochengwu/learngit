@@ -1,0 +1,25 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	background:url(%E9%BB%84%E5%B0%91%E5%A4%A9.png);
+	background-repeat:no-repeat;
+	background-position:right top;
+	background-size:150px 150px;
+	}
+	
+#li{
+	float:left;
+	width:5px;
+	height:25px;
+	background-color:#000;
+	}
+
+#zuo{
+	width:43%;
+	float:left;
+	}
+	
+#you{
+	float:right;
+	}
