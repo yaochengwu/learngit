@@ -6,6 +6,24 @@ body{
 	background-repeat:no-repeat;
 	background-position:right top;
 	background-size:150px 150px;
+	font-family:Verdana, Geneva, sans-serif;}
+
+h1{
+	font-weight:bold;
+	font-size:36px;
+	}
+	
+h2{
+	line-height:1.2;
+	}
+	
+p span{
+	text-indent:20px;
+	padding-left:0px;}	
+	
+a{
+	text-decoration:none;
+	color:#0CF;
 	}
 	
 #li{
@@ -14,12 +32,17 @@ body{
 	height:25px;
 	background-color:#000;
 	}
+	/*线条*/
 
 #zuo{
-	width:43%;
+	width:33%;
 	float:left;
 	}
 	
 #you{
 	float:right;
 	}
+footer{
+	color:#0CF;
+	text-align:center;
+	text-shadow:1px -1px 0px #0099FF;}
