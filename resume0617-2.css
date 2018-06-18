@@ -1,5 +1,8 @@
 @charset "utf-8";
 /* CSS Document */
+html{
+	font-family:sans-serif;
+	}
 
 body{
 	background:url(%E9%BB%84%E5%B0%91%E5%A4%A9.png);
@@ -26,6 +29,30 @@ a{
 	color:#0CF;
 	}
 	
+a:link{
+	txt--decoration:none;
+	color:#0CF;}	
+	
+a:visited{
+	color:#999;
+	}	
+	
+a:focus{
+	border:1px #00CCFF solid;}	
+	
+a:hover{
+	background:#FFC;}	
+	
+a:active{
+	color:#09C;}	
+	
+footer{
+	margin-top:30px;
+	color:#0CF;
+	text-align:center;
+	text-shadow:1px -1px 0px #0099FF;}
+	
+		
 #li{
 	float:left;
 	width:5px;
@@ -37,12 +64,30 @@ a{
 #zuo{
 	width:33%;
 	float:left;
-	}
+	}/*左*/
 	
 #you{
 	float:right;
-	}
-footer{
-	color:#0CF;
-	text-align:center;
-	text-shadow:1px -1px 0px #0099FF;}
+	}/*靠右*/
+
+.love{
+	float:left;
+	padding-left:25px;
+	border-top:2px solid;
+	width:30%;
+	border-color:#CCC;
+	white-space: nowrap;
+	background:#EEE;}
+	
+.horner{
+	float:inherit;
+	padding-left:25px;
+	border:2px solid;
+	width:30%;
+	border-color:#CCC;
+	white-space: nowrap;
+	border-radius:10px 20px/20px 20px;
+	display:inline-block;}/*椭圆边框，xy半径不同用/分开。*/
+ul{
+	list-style:square;
+	line-height:1.5;}
