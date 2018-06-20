@@ -6,25 +6,35 @@
 </head>
 <body>        
     <input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
-    <button id="trans-btn" onclick="dec2bin(decNumber)">转化为二进制</button>
+    <button id="trans-btn" >转化为二进制</button>
     <p id="result">运算结果</p>
     <script>
-        function dec2bin(decNumber) {
+        document.getElementById("trans-btn").onclick = function dec2bin(decNumber) {
             decNumber = parseInt(document.getElementById("dec-number").value);
+            
            if(decNumber>=0){
+               var x=0;
+              /* var arr = [];
                while(decNumber !== 0 )
                {
                    x=decNumber%2;
-                   decNumber=parseInt(decNumber%2);
-                   z="x"+z;
+                   decNumber=parseInt(decNumber/2);
+                   arr.push(x);
+               }*/
+                 var arr = "";
+               while(decNumber !== 0 )
+               {
+                   x=decNumber%2;
+                   decNumber=parseInt(decNumber/2);
+                   arr=x+arr;
                }
-                                          
+               document.getElementById("result").innerHTML= arr;                                          
             }
             else{
                 console.log("input a positive integer.");
             }
-            document.write("???")
-            document.getElementById("result").innerHTML= z;
+            
+
            }
           
        
