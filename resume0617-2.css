@@ -30,7 +30,7 @@ a{
 	}
 	
 a:link{
-	txt--decoration:none;
+	text-decoration:none;
 	color:#0CF;}	
 	
 a:visited{
@@ -53,7 +53,7 @@ footer{
 	text-shadow:1px -1px 0px #0099FF;}
 	
 		
-#li{
+.li{
 	float:left;
 	width:5px;
 	height:25px;
@@ -61,12 +61,12 @@ footer{
 	}
 	/*线条*/
 
-#zuo{
+.zuo{
 	width:33%;
 	float:left;
 	}/*左*/
 	
-#you{
+.you{
 	float:right;
 	}/*靠右*/
 
@@ -80,7 +80,6 @@ footer{
 	background:#EEE;}
 	
 .horner{
-	float:inherit;
 	padding-left:25px;
 	border:2px solid;
 	width:30%;

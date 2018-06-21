@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+</head>
+<body>
+    <script>
+    /*for(var i=1;i<=100;i++){
+        console.log(i);
+        if(i%3==0){
+            console.log("PA")
+        }
+    }*/
+    //在控制中心输出1-100，三的倍数显示为pa。
+    
+    for(var i=1;i<10;i++){
+        for(var j=i;j<10;j++){
+            document.write(i+"*"+j+"="+i*j+"<br>");                      
+        }        
+    }
+    </script>
+    <table border="1" >
+        <caption>九九乘法表</caption>
+        <script>
+            for(var i=1;i<10;i++){
+                document.write("<tr>")
+                for(var j=1;j<=i;j++){
+                    document.write("<td>"+ i +"*"+ j +"="+ i*j +"</td>");                      
+                }
+                document.write("</tr>")        
+            }
+        </script>
+     </table>
+            
+            
+
+</body> 
+</html>       
