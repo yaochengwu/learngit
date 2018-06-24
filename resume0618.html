@@ -5,9 +5,27 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>resume</title>
     <link rel="stylesheet" href="resume0617-2.css" />
+    <script>
+    
+    function gre(){
+        var day=new Date();
+        var time=day.getHours();
+        if(time<9){
+            alert("Good morning~");            
+            }
+        else{
+        if(time>19){
+            alert("Good evening~")
+            }
+        else{        
+            alert("Have a good day~")
+        }
+        }
+    }
+    </script>
 </head>
 
-<body>
+<body onload="gre()">
     <!---name etc.-->
     <div>
         <h1>黄少天</h1>
@@ -19,17 +37,17 @@
     <!--education-->
     <div>
         <h2>
-            <span id="li"></span>&nbsp 教育经历</h2>
+            <span class="li"></span>&nbsp 教育经历</h2>
         <p>
-            <span id="zuo">香港大学</span>
-            <span id="zuo">体育管理（本硕）</span>
-            <span id="you"> 2028.09--2034.06</span>
+            <span class="zuo">香港大学</span>
+            <span class="zuo">体育管理（本硕）</span>
+            <span class="you"> 2028.09--2034.06</span>
         </p>
         <br/>
         <p>
-            <span id="zuo">广州天河中学</span>
-            <span id="zuo"> 荣誉毕业（高中） </span>
-            <span id="you"> 2015.09--2018.06</span>
+            <span class="zuo">广州天河中学</span>
+            <span class="zuo"> 荣誉毕业（高中） </span>
+            <span class="you"> 2015.09--2018.06</span>
         </p>
         <br/>
     </div>
@@ -37,23 +55,23 @@
     <!--work-->
     <div>
         <h2>
-            <span id="li"></span>&nbsp 工作经历</h2>
+            <span class="li"></span>&nbsp 工作经历</h2>
         <p>
-            <span id="zuo">天舟游戏</span>
-            <span id="zuo">总经理</span>
-            <span id="you"> 2028.09--至今</span>
+            <span class="zuo">天舟游戏</span>
+            <span class="zuo">总经理</span>
+            <span class="you"> 2028.09--至今</span>
         </p>
         <br/>
         <p>
-            <span id="zuo">蓝雨战队</span>
-            <span id="zuo"> 副队长 </span>
-            <span id="you"> 2018.09--2028.06</span>
+            <span class="zuo">蓝雨战队</span>
+            <span class="zuo"> 副队长 </span>
+            <span class="you"> 2018.09--2028.06</span>
         </p>
         <br/>
     </div>
     <p style="height:20px;"></p>
 
-    <!---love---->
+    <!---love-->
     <div class="love">
         <h2>爱好特长</h2>
         <ul>
@@ -79,11 +97,11 @@
     <footer>天舟娱乐 &#169; &nbsp
         <a href="黄少天.png">CEO</a>
         <br/>
-        <button id="greet" style="border:none;color:gray">click to greeting me</button>
+        <button class="greet" style="border:none;color:gray">click to greeting me</button>
         <script>
-            document.getElementById("greet").onclick=function(){
+            document.getElementByclass("greet").onclick=function(){
                 alert("Hello!");}
-            console.log(document.getElementById("greet").innerHTML);
+            console.log(document.getElementByclass("greet").innerHTML);
 
         </script>
     </footer>

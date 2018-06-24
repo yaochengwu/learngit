@@ -15,45 +15,46 @@
     <button id="divide-btn">除</button>
     <p id="result">运算结果 :</p>
     <script>
+        x = document.getElementById("first-number").value;
+        y = document.getElementById("second-number").value;
         
         document.getElementById("add-btn").onclick = function () {
             x = Number(document.getElementById("first-number").value);
             y = Number(document.getElementById("second-number").value);
             z = x + y;
-            document.getElementById("result").value = "Result:" + z;
+            document.getElementById("result").innerHTML = "Result:" + z;            
         }
         document.getElementById("minus-btn").onclick = function () {
             x = Number(document.getElementById("first-number").value);
             y = Number(document.getElementById("second-number").value);
             z = x - y;
-            document.getElementById("result").value = "Result:" + z;
+            document.getElementById("result").innerHTML = "Result:" + z;
         }
         document.getElementById("times-btn").onclick = function () {
             x = Number(document.getElementById("first-number").value);
-            y = Number(document.getElementById("second-number").value);
+            y = Number(document.getElementById("second-number").value);           
             z = x * y;
-            document.getElementById("result").value = "Result:" + z;
+            document.getElementById("result").innerHTML = "Result:" + z;
+                        
         }
         document.getElementById("divide-btn").onclick = function () {
             x = Number(document.getElementById("first-number").value);
             y = Number(document.getElementById("second-number").value);
             if(y==0){
-                console.log("被除数不可为0.");
+                console.log("Divisor can't be 0.");
             }
             z = x / y;
-            document.getElementById("result").value = "Result:" + z;
-            
+            document.getElementById("result").innerHTML = "Result:" + z;
         }
-       
-        if(isNaN(Number(document.getElementById("first-number").value))==true || isNaN(Number(document.getElementById("second-number").value))==true){
-           console.log("输入信息错误！");
+        if(isNaN(x+y)==true){
+            function ab() {
+                console.log("Invalid input.");
+            }            
         }
-       
-        /*dont know where is wrong*/
+
+        
+
     </script>
-
-
 </body>
 
 </html>
-
