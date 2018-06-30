@@ -35,8 +35,8 @@
     <p class="color-picker"></p>
 
     <script>
-        var list = document.querySelectorAll("li");
-        /*for (var i =0, len = list.length; i < len; i++) {
+        /* var list = document.querySelectorAll("li");
+       for (var i =0, len = list.length; i < len; i++) {
             list[i].onclick = function(e) {
                 var t = e.target;
                 var c = t.style.backgroundColor;
@@ -46,18 +46,18 @@
 
             }
         }*/
-        var pal = document.getElementById("palette");
-        pal.addEventListener("click", function (e) {
-            var e = e || window.event;
-            var t = e.target || e.srcElement;
+        var pal = document.querySelector("ul");
 
-            if (t.nodeName.toLowerCase() == "li") {
+        pal.addEventListener("click",showc)
+        function  showc(e) {
+            var t = e.target || e.srcElement;
+            if(t.nodeName.toLowerCase() == "li") {
                 var cc = t.style.backgroundColor;
                 var p = document.querySelector("p");
                 p.innerHTML = cc;
                 p.style.color = cc;
             }
-        })
+        }
     </script>
 </body>
 
