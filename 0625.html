@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+</head>
+
+<body>
+        <div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+        <button id="fade-btn">淡出</button>
+        <script>
+        var fado=document.getElementById("fade-obj")
+        var fade=document.getElementById("fade-btn");
+        fade.onclick=function(){
+            setTimeout(fado.style.background=white,3000);
+
+            fade.innerHTML="淡入"
+        }
+        </script>
+</body>
+</html>        
