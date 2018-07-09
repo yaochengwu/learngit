@@ -4,26 +4,38 @@ html{
 	font-family:sans-serif;
 	}
 
-body{
-	background:url(%E9%BB%84%E5%B0%91%E5%A4%A9.png);
+/*头像*/
+#pic{
+	background:url(H.png);
 	background-repeat:no-repeat;
-	background-position:right top;
-	background-size:150px 150px;
-	font-family:Verdana, Geneva, sans-serif;}
+	background-position: left top;
+	background-size:100px 100px;
+	}
 
 h1{
 	font-weight:bold;
 	font-size:36px;
 	}
+
+div{
+	overflow: hidden;
 	
+	}
+
 h2{
 	line-height:1.2;
+	font-size: 18px;
+	margin-bottom: -100px;
+	padding-bottom: 100px;
 	}
 	
 p span{
 	text-indent:20px;
-	padding-left:0px;}	
+	padding-left:0px;
 	
+}	
+
+	/*超链接*/
 a{
 	text-decoration:none;
 	color:#0CF;
@@ -45,7 +57,8 @@ a:hover{
 	
 a:active{
 	color:#09C;}	
-	
+
+	/*底部*/
 footer{
 	margin-top:30px;
 	color:#0CF;

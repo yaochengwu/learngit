@@ -1,0 +1,26 @@
+.line{
+    height: 10%;
+    background-color:gray;
+}
+
+h2{
+    width: 12%;
+    height: 100px;
+    float: left;
+    background-color: rgb(201, 212, 212);
+}
+
+.horner{
+   overflow: hidden;
+    height: 100px;
+}
+		
+
+.zuo{
+	width:33%;
+	float:left;
+	}/*左*/
+	
+.you{
+	float:right;
+	}/*靠右*/
