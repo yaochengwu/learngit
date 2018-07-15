@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+    <style>
+        .c {
+            background-image: url("smile.jpg");
+            background-repeat: no-repeat;
+            height: 480px;
+            width: 480px;
+        }
+    </style>
+
+</head>
+
+<body>
+    
+    <div class="c"></div>
+    <script>
+        var smi = document.querySelector("div");
+        var i = 0;
+  
+        var j=0;
+        smi.style.backgroundPositionY =0;//真的急缺一个debug的
+        setInterval(function () {
+            if (i == -8160) {
+                j = 1;
+            }
+           if (i == 0) {
+                j = 0;
+            }
+            if (j == 1) {
+                i += 480
+            }
+            if (j == 0) {
+                i -= 480;
+            }
+            smi.style.backgroundPositionY = i +'px';
+
+        }, 100)
+    </script>
+
+
+</body>
+
+</html>

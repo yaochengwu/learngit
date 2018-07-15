@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+</head>
+
+<body>
+        <div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+        <button id="fade-btn">淡出</button>
+<script>
+    var fado=document.getElementById("fade-obj");
+    var fadt=document.getElementById("fade-btn");
+    /*fadt.onclick=function(){
+        for(i=5;i<=255;){
+            i=i+10;
+            setTimeout(fado.style.backgroundColor='rgb('+i+','+i+','+i+')' ,500)
+            }
+      }*/
+      var i=5;
+    fadt.onclick=function(){
+        setInterval(function(){
+            i=i+10;
+            fado.style.backgroundColor="rgb("+i+","+i+","+i+")";
+            if (i>255){
+            clearInterval();
+            fadt.innerHTML="淡入"
+        }
+        },200)
+        
+
+
+    }
+  
+</script>
+
+</body>
+</html>

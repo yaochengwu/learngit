@@ -1,0 +1,32 @@
+.line {
+    float: left;
+    margin-bottom: -3000px;
+    padding-bottom: 3000px;
+    width: 20%;
+    background-color: yellow;
+}
+
+.se {
+    float: left;
+    margin-bottom: -3000px;
+    padding-bottom: 3000px;
+    width: 80%;
+}
+
+		
+.li{
+	float:left;
+	width:5px;
+	height:25px;
+	background-color:#000;
+	}
+	/*线条*/
+
+.zuo{
+	width:33%;
+	float:left;
+	}/*左*/
+	
+.you{
+	float:right;
+	}/*靠右*/
