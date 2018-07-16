@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>0713</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <select id="year-select">
+        <option value="2000">2000</option>
+        <option value="2001">2001</option>
+        <option value="2002">2002</option>
+
+    </select>
+
+    <select id="month-select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+
+    </select>
+
+    <select id="day-select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+
+    </select>
+
+    <select id="hour-select">
+        <option value="0">0</option>
+        <option value="1">1</option>
+
+    </select>
+
+    <select id="minite-select">
+        <option value="0">0</option>
+        <option value="1">1</option>
+
+    </select>
+
+    <select id="second-select">
+        <option value="0">0</option>
+        <option value="1">1</option>
+
+    </select>
+
+    <script>
+        function select_check(selectId) {
+            var sel = document.getElementById(selectId);
+            var index = sel.selectedIndex;
+            var select = Number(sel.options[index].text);
+            return select;
+        }
+        function addNode(j, k, selId) {
+            for (i = j; i < k; i++) {
+                var opt = document.createElement("option");
+                var node = document.createTextNode(i);
+                opt.appendChild(node);
+                var sel = document.getElementById(selId);
+                sel.appendChild(opt);
+            }
+        }
+        //year
+
+        addNode(2003, 2033, "year-select");
+        var year = select_check("year-select");
+
+        //month
+
+        addNode(3, 13, "month-select");
+        var month = select_check("month-select");
+
+
+        //day--leap year
+
+        function leapyear(y) {
+            if (y % 4 == 0 && y % 100 != 0) {
+                return ture;
+            }
+            if (y % 400 == 0) {
+                return ture;
+            }
+            return false;
+        }
+
+        function selectMonth(year, month) {
+            if (month == 2) {
+                if (leapyear(year)) {
+                    return 29;
+                } else {
+                    return 30;
+                }
+            } else {
+                if (month < 8 && month % 2 == 1) {
+                    return 32;
+                }
+                if (month >= 8 && month % 2 == 0) {
+                    return 32;
+                }
+                return 31;
+            }
+        }
+
+        var mon_day = selectMonth(year, month);
+
+        addNode(3, mon_day, "day-select");
+        var day = select_check("day-select");
+        /*WTF!!!*/
+
+        //hour
+
+        addNode(2, 24, "hour-select");
+        var hour = select_check("hour-select");
+        //minute
+
+        addNode(2, 60, "minite-select");
+        var minute = select_check("minite-select");
+        //second
+
+        addNode(2, 60, "second-select");
+        var second = select_check("second-select");
+
+        //计算星期
+        var setweek = new Date(year, month - 1, day).getDay();
+        var week = "星期" + "日一二三四五六".charAt(setweek);
+
+
+
+
+        //计算时差
+        var date = new Date();
+        //判断早晚的函数，返回还有/过去
+        
+
+        //the biggest problem,How to update?when i check 
+        var time = year + "年" + month + "月" + day + "日" + week + hour + ":" + minute + ":" + second;
+
+
+
+        var p = document.getElementById("result-wrapper");
+        p.innerHTML = "现在距离" + time ;//还差两个变量
+    </script>
+    <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+</body>
+
+</html>
