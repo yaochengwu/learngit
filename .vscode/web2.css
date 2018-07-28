@@ -195,3 +195,33 @@
     background-color: gray;
     margin: 0 3% 0  3%;
 }
+
+
+/*          right 2           */
+.right1 {
+    height: 80px;
+    width: 100%;
+    display:inline-flex;
+    border-bottom: solid 1px gray;
+}
+
+.right1_left {
+    width: 30%;
+    height: 80px;
+    border-right: 1px solid gray;
+    left: 0;
+    align-items: center;
+
+}
+
+.right1_right{
+    flex: 1;
+    margin: 0 3% 0 3%;
+    display: inline-flex;
+    align-items: center;
+}
+
+.right1_right1{
+    right: 0;
+    position: absolute;
+}
