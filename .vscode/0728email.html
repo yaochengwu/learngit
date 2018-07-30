@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <input id="email-input" type="text">
+        <ul id="email-sug-wrapper" class="email-sug"></ul>
+    </div>
+
+    <script>
+        var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+        var inp = document.getElementById("email-input");
+        inp.oninput() = inputDom;
+        inputDom = function () {
+
+        }
+
+        function val() {
+            var inpval = inp.value;
+            inpval = inpval.slice(1, -1);
+            return inpval;
+        }
+
+        function out() {
+            val();
+            var val = val();
+            for (i = 0; i++; i < 5) {
+                val = val + postfixList[i];
+                var addli=document.createElement("li");
+                var addnode=document.createTextNode(val);
+                addli.appendChild(addnode);
+                document.getElementById("email-sug-wrapper").appendChild(addli);
+            }
+            
+        }
+function hs(){
+    if (inp.value=""){
+        
+    }
+}
+    </script>
+</body>
+
+</html>
