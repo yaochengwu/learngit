@@ -21,7 +21,7 @@
         var inp = document.getElementById("email-input");
         inp.oninput() = inputDom;
         inputDom = function () {
-
+            hs();
         }
 
         function val() {
@@ -35,18 +35,19 @@
             var val = val();
             for (i = 0; i++; i < 5) {
                 val = val + postfixList[i];
-                var addli=document.createElement("li");
-                var addnode=document.createTextNode(val);
+                var addli = document.createElement("li");
+                var addnode = document.createTextNode(val);
                 addli.appendChild(addnode);
                 document.getElementById("email-sug-wrapper").appendChild(addli);
             }
-            
+
         }
-function hs(){
-    if (inp.value=""){
-        
-    }
-}
+        function hs() {
+            if (inp.value != "") {
+                out();
+
+            }
+        }
     </script>
 </body>
 
