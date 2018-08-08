@@ -19,35 +19,44 @@
     <script>
         var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
         var inp = document.getElementById("email-input");
-        inp.oninput() = inputDom;
-        inputDom = function () {
+        var list = document.getElementById("email-sug-wrapper");
+
+        inp.onkeyup = function inputDom() {
             hs();
         }
 
         function val() {
             var inpval = inp.value;
-            inpval = inpval.slice(1, -1);
-            return inpval;
+            return inpval.slice(1, -1);
         }
 
         function out() {
-       
             var val = val();
-            for (i = 0; i++; i < 5) {
+            for (i = 0; i < 5; i++) {
                 val = val + postfixList[i];
                 var addli = document.createElement("li");
                 var addnode = document.createTextNode(val);
                 addli.appendChild(addnode);
-                document.getElementById("email-sug-wrapper").appendChild(addli);
+                list.appendChild(addli);
             }
-
         }
+
         function hs() {
             if (inp.value != "") {
-                out();
-
+                show();
+            }
+            else {
+                hidd();
             }
         }
+
+        function hidd() {
+            list.style.display = "none";
+        }
+        function show() {
+            list.style.display = "block";
+        }
+
     </script>
 </body>
 
