@@ -22,6 +22,7 @@
         var list = document.getElementById("email-sug-wrapper");
 
         inp.onkeyup = function inputDom() {
+            out();
             hs();
         }
 
@@ -31,9 +32,9 @@
         }
 
         function out() {
-            var val = val();
+            var val = inp.value.slice(1, -1);
             for (i = 0; i < 5; i++) {
-                val = val + postfixList[i];
+                val = val+"@" + postfixList[i];
                 var addli = document.createElement("li");
                 var addnode = document.createTextNode(val);
                 addli.appendChild(addnode);
