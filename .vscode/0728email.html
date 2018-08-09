@@ -25,18 +25,13 @@
         var inp = document.getElementById("email-input");
         var list = document.getElementById("email-sug-wrapper");
 
-<<<<<<< HEAD
         inp.oninput = function inputDom() {
             out();
-=======
-        inp.onkeyup = function inputDom() {
->>>>>>> 460990fa2238b2f44dd9cf42591ec84a85cfa726
             hs();
         }
 
         function val() {
             var inpval = inp.value;
-<<<<<<< HEAD
             return inpval.slice(0, -1);
         }
 
@@ -59,27 +54,6 @@
             if (inp.value != "") {
                 show();
             } else {
-=======
-            return inpval.slice(1, -1);
-        }
-
-        function out() {
-            var val = val();
-            for (i = 0; i < 5; i++) {
-                val = val + postfixList[i];
-                var addli = document.createElement("li");
-                var addnode = document.createTextNode(val);
-                addli.appendChild(addnode);
-                list.appendChild(addli);
-            }
-        }
-
-        function hs() {
-            if (inp.value != "") {
-                show();
-            }
-            else {
->>>>>>> 460990fa2238b2f44dd9cf42591ec84a85cfa726
                 hidd();
             }
         }
