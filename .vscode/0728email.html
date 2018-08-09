@@ -6,7 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" media="screen" href="0809email.css" />
+=======
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+>>>>>>> 460990fa2238b2f44dd9cf42591ec84a85cfa726
     <script src="main.js"></script>
 </head>
 
@@ -21,13 +25,18 @@
         var inp = document.getElementById("email-input");
         var list = document.getElementById("email-sug-wrapper");
 
+<<<<<<< HEAD
         inp.oninput = function inputDom() {
             out();
+=======
+        inp.onkeyup = function inputDom() {
+>>>>>>> 460990fa2238b2f44dd9cf42591ec84a85cfa726
             hs();
         }
 
         function val() {
             var inpval = inp.value;
+<<<<<<< HEAD
             return inpval.slice(0, -1);
         }
 
@@ -50,6 +59,27 @@
             if (inp.value != "") {
                 show();
             } else {
+=======
+            return inpval.slice(1, -1);
+        }
+
+        function out() {
+            var val = val();
+            for (i = 0; i < 5; i++) {
+                val = val + postfixList[i];
+                var addli = document.createElement("li");
+                var addnode = document.createTextNode(val);
+                addli.appendChild(addnode);
+                list.appendChild(addli);
+            }
+        }
+
+        function hs() {
+            if (inp.value != "") {
+                show();
+            }
+            else {
+>>>>>>> 460990fa2238b2f44dd9cf42591ec84a85cfa726
                 hidd();
             }
         }
@@ -57,10 +87,17 @@
         function hidd() {
             list.style.display = "none";
         }
+<<<<<<< HEAD
 
         function show() {
             list.style.display = "block";
         }
+=======
+        function show() {
+            list.style.display = "block";
+        }
+
+>>>>>>> 460990fa2238b2f44dd9cf42591ec84a85cfa726
     </script>
 </body>
 

@@ -6,48 +6,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>0713</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+
 </head>
 
 <body>
-    <select id="year-select">
-        <option value="2000">2000</option>
-        <option value="2001">2001</option>
-        <option value="2002">2002</option>
+    <div>
+        <select id="year-select">
+            <option value="2000">2000</option>
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
 
-    </select>
+        </select>
 
-    <select id="month-select">
-        <option value="1">1</option>
-        <option value="2">2</option>
+        <select id="month-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
 
-    </select>
+        </select>
 
-    <select id="day-select">
-        <option value="1">1</option>
-        <option value="2">2</option>
+        <select id="day-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
 
-    </select>
+        </select>
 
-    <select id="hour-select">
-        <option value="0">0</option>
-        <option value="1">1</option>
+        <select id="hour-select">
+            <option value="0">0</option>
+            <option value="1">1</option>
 
-    </select>
+        </select>
 
-    <select id="minite-select">
-        <option value="0">0</option>
-        <option value="1">1</option>
+        <select id="minite-select">
+            <option value="0">0</option>
+            <option value="1">1</option>
 
-    </select>
+        </select>
 
-    <select id="second-select">
-        <option value="0">0</option>
-        <option value="1">1</option>
+        <select id="second-select">
+            <option value="0">0</option>
+            <option value="1">1</option>
 
-    </select>
-
+        </select>
+    </div>
     <script>
         function select_check(selectId) {
             var sel = document.getElementById(selectId);
@@ -55,28 +55,27 @@
             var select = Number(sel.options[index].text);
             return select;
         }
-        //year
-        for (i = 2003; i < 2033; i++) {
-            var opt = document.createElement("option");
-            var node = document.createTextNode(i);
-            opt.appendChild(node);
-            var sel = document.getElementById("year-select");
-            sel.appendChild(opt);
-        }
-        var year = select_check("year-select");
 
-        //month
-        for (i = 3; i < 13; i++) {
-            var opt = document.createElement("option");
-            var node = document.createTextNode(i);
-            opt.appendChild(node);
-            var sel = document.getElementById("month-select");
-            sel.appendChild(opt);
+        function addNode(j, k, selId) {
+            for (i = j; i < k; i++) {
+                var opt = document.createElement("option");
+                var node = document.createTextNode(i);
+                opt.appendChild(node);
+                var sel = document.getElementById(selId);
+                sel.appendChild(opt);
+            }
         }
-        var month = select_check("month-select");
+
+        function showtime(obj) {
+            if (obj < 10) {
+                obj = "0" + obj;
+            }
+            return obj;
+        }
 
 
         //day--leap year
+
 
         function leapyear(y) {
             if (y % 4 == 0 && y % 100 != 0) {
@@ -85,72 +84,143 @@
             if (y % 400 == 0) {
                 return ture;
             }
-            return false;
+            else {
+                return false;
+            }
         }
 
         function selectMonth(year, month) {
             if (month == 2) {
                 if (leapyear(year)) {
-                    return 28;
+                    return 30;
                 } else {
                     return 29;
                 }
             } else {
                 if (month < 8 && month % 2 == 1) {
-                    return 31;
+                    return 32;
                 }
                 if (month >= 8 && month % 2 == 0) {
                     return 31;
                 }
-                return 30;
+                else {
+                    return 31;
+                }
             }
         }
-        
-        var mon_day = selectMonth(year, month);
 
-        for (i = 3; i <= mon_day; i++) {
-            var opt = document.createElement("option");
-            var node = document.createTextNode(i);
-            opt.appendChild(node);
-            var sel = document.getElementById("day-select");
-            sel.appendChild(opt);
-        }
-        var day = select_check("day-select");
-        /*WTF!!!*/
-        //hour
-        for (i = 2; i < 24; i++) {
-            var opt = document.createElement("option");
-            var node = document.createTextNode(i);
-            opt.appendChild(node);
-            var sel = document.getElementById("hour-select");
-            sel.appendChild(opt);
-        }
-        var hour = select_check("hour-select");
-        //minute
-        for (i = 2; i < 60; i++) {
-            var opt = document.createElement("option");
-            var node = document.createTextNode(i);
-            opt.appendChild(node);
-            var sel = document.getElementById("minite-select");
-            sel.appendChild(opt);
-        }
-        var minute = select_check("minite-select");
-        //second
-        for (i = 2; i < 60; i++) {
-            var opt = document.createElement("option");
-            var node = document.createTextNode(i);
-            opt.appendChild(node);
-            var sel = document.getElementById("second-select");
-            sel.appendChild(opt);
-        }
-        var second = select_check("second-select");
-//计算星期
-var week;
-        //计算时差
-var date=new Date();
 
-//the biggest problem,How to update?when i check 
-        var time=year+"年"+month+"月"+day+"日"+week+hour+":"+minute+":"+second;
+        //year
+        addNode(2003, 2033, "year-select");
+        addNode(3, 13, "month-select");
+        addNode(2, 24, "hour-select");
+        addNode(2, 60, "minite-select");
+        addNode(2, 60, "second-select");
+        function monn() {
+            var year = select_check("year-select");
+
+            //month
+
+            var month = select_check("month-select");
+
+            var mon_day = selectMonth(year, month);
+
+
+            var da = document.getElementById("day-select");
+            da.length = 1;
+            /*    for (i = 2; i <= mon_day; i++) {
+  
+                  da.options[i] = new Option(i + 1, i);
+              }
+               */
+
+            addNode(3, mon_day, "day-select");
+            da.length = mon_day;
+
+        }
+
+        function change() {
+
+            monn();
+
+            var year = select_check("year-select");
+
+            //month
+
+            var month = select_check("month-select");
+
+
+
+            var mon_day = selectMonth(year, month);
+
+            var da = document.getElementById("day-select");
+            addNode(3, mon_day, "day-select");
+            da.length = mon_day;
+
+            var day = select_check("day-select");
+            //hour
+
+            var hour = select_check("hour-select");
+            //minute
+
+
+            var minute = select_check("minite-select");
+            //second
+
+            var second = select_check("second-select");
+            //计算星期
+            var setweek = new Date(year, month - 1, day).getDay();
+            var week = "星期" + "日一二三四五六".charAt(setweek);
+
+
+
+
+
+            //计算时差
+            var date = new Date();
+            var settime = new Date(year, month - 1, day, hour, minute, second)
+            var eque = date.getTime() - settime.getTime();
+
+            var equea = Math.abs(eque);
+            var dayy = Math.floor(equea / (1000 * 60 * 60 * 24));
+            var hourr = Math.floor((equea % (24 * 3600000)) / 3600000);
+            var minutee = Math.floor(((equea % (24 * 3600000)) % 3600000) / 60000);
+            var secondd = Math.floor((((equea % (24 * 3600000)) % 3600000) % 60000) / 1000);
+
+
+            //time
+            hour = showtime(hour);
+            minute = showtime(minute);
+            second = showtime(second);
+
+
+            //判断早晚的函数，返回还有/过去
+
+            if (eque >= 0) {
+                var one = "过去";
+            }
+            else {
+                var one = "还有";
+            }
+            // document.write(time + one + equation)
+            var equation = dayy + "天" + hourr + "小时" + minutee + "分" + secondd + "秒";
+            var time = "现在距离" + year + "年" + month + "月" + day + "日" + week + hour + ":" + minute + ":" + second;
+            document.getElementById("result-wrapper").innerHTML = time + one + equation;
+
+
+
+        }
+
+        var divv = document.querySelector("div");
+
+        divv.onchange = function () {
+
+
+            change();
+
+        }
+
+
 
     </script>
     <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>

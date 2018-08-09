@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+
+<body onload="Nowtime()">
+    <script>
+        function Nowtime() {
+            let date = new Date(),
+                year = date.getFullYear(),
+                month = date.getMonth() + 1,
+                day = date.getDate(),
+                week = date.getDay(),
+                hour = date.getHours(),
+                minute = date.getMinutes(),
+                second = date.getSeconds();
+
+            //星期几
+            var we = "星期" + "日一二三四五六".charAt(week);
+            var w = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
+            var wee = w[week];
+        
+            var apm;
+            function APM() {
+                if (Number(hour) < 13) {
+                    apm = "AM";
+                }
+                else {
+                    apm = "PM";
+                }
+                return apm; 
+            } 
+            APM();
+             //时间显示
+            function showtime(obj) {
+                if (obj < 10) {
+                    obj = "0" + obj;
+                }
+                return obj;
+            }
+            month = showtime(month);
+            day = showtime(day);
+            hour = showtime(hour);
+            minute = showtime(minute);
+            second = showtime(second);
+
+            //A/PM
+            
+            //时间格式
+            var nowtime = year + "年" + month + "月" + day + "日" + we + hour + ":" + minute + ":" + second;
+            var Now = year + "-" + month + "-" + day + " " + wee + " "+hour + ":" + minute + ":" + second +" "+ apm;
+            document.getElementById("time").innerHTML = nowtime;
+            document.getElementById("now").innerHTML = Now;
+            t = setTimeout("Nowtime()", 500);
+        }
+
+    </script>
+    <p id="time">？</p>
+    <p id="now">？</p>
+</body>
+
+</html>
