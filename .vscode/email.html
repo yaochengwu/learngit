@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="0809email.css" />
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <input id="regemail" class="int-type w-thir" type="text" autocomplete="off" tips="邮箱地址" name="email" rule="" style="ime-mode: disabled;">
+    <div id="maillist" style="display: none;">
+        <h3>请选择邮箱类型</h3>
+        <ul>
+            <li class="on"></li>
+            <li>@qq.com</li>
+            <li>@163.com</li>
+            <li>@126.com</li>
+            <li>@sina.com</li>
+            <li>@hotmail.com</li>
+            <li>@yahoo.com.cn</li>
+            <li>@sohu.com</li>
+            <li>@yahoo.cn</li>
+            <li>@gmail.com</li>
+            <li>@tom.com</li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        function $$(id) {
+            return document.getElementById(id);
+        }
+        var lists;
+        var len;
+        window.onload = function () {
+            var objtxt = $$("regemail");
+            var objlist = $$("maillist");
+
+            lists = objlist.getElementsByTagName("li");
+            len = lists.length;
+
+            //给每个li绑定一个鼠标的点击事件
+            for (var i = 1; i < len; i++) {
+                lists[i].onmousedown = function () {
+                    objtxt.value = this.textContent;
+                    objlist.style.display = "none";
+                }
+            }
+
+            //计算这个层的显示位置
+            objtxt.onfocus = function () {
+                objlist.style.display = "block";
+            }
+            objtxt.onblur = function () {
+                objlist.style.display = "none";
+            }
+
+            //当松开键盘的按键的时候
+            objtxt.onkeyup = function () {
+                //获取文本框中的值
+                var txt = this.value;
+                var flag = "";
+                if (txt.indexOf("@") > 0) {
+                    flag = txt.substring(txt.indexOf("@") - 1); //获取的输入的@开始的内容
+                    txt = txt.substring(0, txt.indexOf("@"));
+                } else {
+                    flag = "";
+                }
+                var val = "";
+                //将这个值放到所有的li前面
+                for (var i = 1; i < len; i++) {
+                    val = lists[i].textContent;
+                    val = val.substring(val.indexOf("@"));
+                    lists[i].textContent = txt + val;
+                }
+
+                //如果用户输入了@，则检查哪些是满足条件的
+                if (flag != "") {
+                    var reg = new RegExp(flag, "i");
+                    for (var i = 1; i < len; i++) {
+                        if (reg.test(lists[i].textContent)) {
+                            lists[i].style.display = "block";
+                        } else {
+                            lists[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

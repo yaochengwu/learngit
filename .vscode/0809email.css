@@ -1,0 +1,32 @@
+#maillist, #register .toemail  iframe {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #fff;
+    border-color: -moz-use-text-color #ccc #ccc;
+    border-image: none;
+    border-right: 1px solid #ccc;
+    border-style: none solid solid;
+    border-width: 0 1px 1px;
+    display: none;
+    left: 0;
+    position: absolute;
+    top: 41px;
+    width: 226px;
+    z-index: 999;
+}
+
+#maillist ul li{
+    color:#666;
+    cursor:pointer;
+}
+
+#maillist ul li:hover{
+    color:#999;
+}
+
+
+.li{
+    list-style: none;
+}
