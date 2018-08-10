@@ -21,32 +21,35 @@
         var inp = document.getElementById("email-input");
         var list = document.getElementById("email-sug-wrapper");
 
-        inp.onkeyup = function inputDom() {
+        inp.oninput = function inputDom() {
             out();
             hs();
         }
 
         function val() {
             var inpval = inp.value;
-            return inpval.slice(1, -1);
+            return inpval.slice(0, -1);
         }
 
         function out() {
-            var val = inp.value.slice(1, -1);
-            for (i = 0; i < 5; i++) {
-                val = val+"@" + postfixList[i];
+            var val = inp.value.slice(0, -1);
+            for (i = 0; i < postfixList.length; i++) {
+              var nval = val + "@" + postfixList[i];
                 var addli = document.createElement("li");
-                var addnode = document.createTextNode(val);
+                var addnode = document.createTextNode(nval);
                 addli.appendChild(addnode);
                 list.appendChild(addli);
+                nval="";
+                list.style.display="none";
             }
+            
         }
+
 
         function hs() {
             if (inp.value != "") {
                 show();
-            }
-            else {
+            } else {
                 hidd();
             }
         }
