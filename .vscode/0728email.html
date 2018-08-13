@@ -35,10 +35,10 @@
         function out() {
             var val = inpv();
             list.innerHTML = "";
-            var mval;
+
             if (val.indexOf("@") != -1) {
+                var mval = val.substring(val.indexOf("@") + 1);
                 val = val.slice(0, val.indexOf("@"));
-                mval = val.slice(val.indexOf("@")+1 );
 
                 for (i = 0; i < postfixList.length; i++) {
                     if (postfixList[i].indexOf(mval) != -1) {
@@ -58,7 +58,7 @@
                         list.appendChild(addli);
                     }
                 }
-            } 
+            }
             else {
                 for (i = 0; i < postfixList.length; i++) {
                     var nval = val + "@" + postfixList[i];
