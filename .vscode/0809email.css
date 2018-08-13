@@ -26,6 +26,21 @@
     color:#999;
 }
 
+.email-sug{   
+    background: none repeat scroll 0 0 #fff;
+    border-color: #ccc #ccc;
+    border-image: none;
+    border-right: 1px solid #ccc;
+    border-style: none solid solid;
+    border-width: 0 1px 1px;
+    display: none;
+    left: 0;
+    position: absolute;
+    top: 41px;
+    width: 226px;
+    z-index: 999;
+    overflow: hidden;
+}
 
 .li{
     list-style: none;

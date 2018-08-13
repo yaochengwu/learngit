@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="0809email.css" />
     <script src="main.js"></script>
 </head>
 
@@ -28,26 +28,57 @@
 
         function inpv() {
             var inpval = inp.value;
+            inpval = inpval.replace(/\s/g, "");
             return inpval;
         }
 
         function out() {
             var val = inpv();
             list.innerHTML = "";
-            for (i = 0; i < postfixList.length; i++) {
-                var nval = val + "@" + postfixList[i];
-                var addli = document.createElement("li");
-                var addnode = document.createTextNode(nval);
-                addli.appendChild(addnode);
-                list.appendChild(addli);
+            var mval;
+            if (val.indexOf("@") != -1) {
+                val = val.slice(0, val.indexOf("@"));
+                mval = val.slice(val.indexOf("@")+1 );
+
+                for (i = 0; i < postfixList.length; i++) {
+                    if (postfixList[i].indexOf(mval) != -1) {
+                        var nval = val + "@" + postfixList[i];
+                        var addli = document.createElement("li");
+                        var addnode = document.createTextNode(nval);
+                        addli.appendChild(addnode);
+                        list.appendChild(addli);
+                    }
+                }
+                if (list.innerHTML = "") {
+                    for (i = 0; i < postfixList.length; i++) {
+                        var nval = val + "@" + postfixList[i];
+                        var addli = document.createElement("li");
+                        var addnode = document.createTextNode(nval);
+                        addli.appendChild(addnode);
+                        list.appendChild(addli);
+                    }
+                }
+            } 
+            else {
+                for (i = 0; i < postfixList.length; i++) {
+                    var nval = val + "@" + postfixList[i];
+                    var addli = document.createElement("li");
+                    var addnode = document.createTextNode(nval);
+                    addli.appendChild(addnode);
+                    list.appendChild(addli);
+                }
             }
 
 
         }
 
 
+
+
+
         function hs() {
-            if (inp.value != "") {
+            var val = inpv();
+            if (val != "") {
                 show();
             } else {
                 hidd();
@@ -57,11 +88,11 @@
         function hidd() {
             list.style.display = "none";
         }
+
         function show() {
 
             list.style.display = "block";
         }
-
     </script>
 </body>
 
