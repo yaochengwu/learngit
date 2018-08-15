@@ -14,6 +14,7 @@
     <div class="wrapper">
         <input id="email-input" type="text">
         <ul id="email-sug-wrapper" class="email-sug"></ul>
+        <p></p>
     </div>
 
     <script>
@@ -28,7 +29,13 @@
 
         function inpv() {
             var inpval = inp.value;
-            inpval = inpval.replace(/\s/g, "");
+            inpval = inpval.replace(/\s/g, ""); //去空格
+            inpval = inpval.replace(/&/g, "&");
+            inpval = inpval.replace(/</g, "<");
+            inpval = inpval.replace(/>/g, ">");
+            inpval = inpval.replace(/ /g, " ");
+            inpval = inpval.replace(/\'/g, "'");
+            inpval = inpval.replace(/\"/g, ""); //转义(/\"/g, """)没法显示，无解啊
             return inpval;
         }
 
@@ -37,44 +44,45 @@
             list.innerHTML = "";
 
             if (val.indexOf("@") != -1) {
-                var mval = val.substring(val.indexOf("@") + 1);
+                var mval = val.slice(val.indexOf("@") + 1);
                 val = val.slice(0, val.indexOf("@"));
 
                 for (i = 0; i < postfixList.length; i++) {
-                    if (postfixList[i].indexOf(mval) != -1) {
-                        var nval = val + "@" + postfixList[i];
-                        var addli = document.createElement("li");
-                        var addnode = document.createTextNode(nval);
-                        addli.appendChild(addnode);
-                        list.appendChild(addli);
+                    var post = postfixList[i];
+                    if (post.indexOf(mval) == 0) {
+                        addlist();
+
                     }
                 }
                 if (list.innerHTML = "") {
                     for (i = 0; i < postfixList.length; i++) {
-                        var nval = val + "@" + postfixList[i];
-                        var addli = document.createElement("li");
-                        var addnode = document.createTextNode(nval);
-                        addli.appendChild(addnode);
-                        list.appendChild(addli);
+                        addlist();
                     }
                 }
-            }
-            else {
+
+
+            } else {
                 for (i = 0; i < postfixList.length; i++) {
-                    var nval = val + "@" + postfixList[i];
-                    var addli = document.createElement("li");
-                    var addnode = document.createTextNode(nval);
-                    addli.appendChild(addnode);
-                    list.appendChild(addli);
+                    addlist();
                 }
+            }
+
+            function addlist() {
+                val = val.replace(/&/g, "&");
+                val = val.replace(/</g, "<");
+                val = val.replace(/>/g, ">");
+                val = val.replace(/ /g, " ");
+                val = val.replace(/'/g, "\'");
+                val = val.replace(/"/g, "\""); //解码,到底解了没有啊，愁人
+                var nval = val + "@" + postfixList[i];
+                var addli = document.createElement("li");
+                var addnode = document.createTextNode(nval);
+                addli.appendChild(addnode);
+                list.appendChild(addli);
             }
 
 
         }
-
-
-
-
 
         function hs() {
             var val = inpv();
@@ -92,6 +100,32 @@
         function show() {
 
             list.style.display = "block";
+        }
+        //选择事件
+        list.addEventListener("mouseover", chalist);
+        list.addEventListener("mouseout", relist);
+        list.addEventListener("click", choselist);
+
+        function chalist(e) {
+            var t = e.target || e.srcElement;
+            if (t.nodeName.toLowerCase() == "li") {
+                t.style.backgroundColor = "gray";
+            }
+        }
+
+        function relist(e) {
+            var t = e.target || e.srcElement;
+            if (t.nodeName.toLowerCase() == "li") {
+                t.style.backgroundColor = "white";
+            }
+        }
+
+        function choselist(e) {
+            var t = e.target || e.srcElement;
+            if (t.nodeName.toLowerCase() == "li") {
+                inp.value = t.innerHTML;
+                hidd();
+            }
         }
     </script>
 </body>

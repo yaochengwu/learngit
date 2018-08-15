@@ -7,19 +7,25 @@
 </head>
 
 <body>
-        <div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
-        <button id="fade-btn">淡出</button>
-        <script>
-        var fado=document.getElementById("fade-obj")
-        var fade=document.getElementById("fade-btn");
-        fade.onclick=function(){
-            setTimeout(fado.style.background=white,3000);
+    <div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+    <button id="fade-btn">淡出</button>
+    <script>
+        var fado = document.getElementById("fade-obj")
+        var fade = document.getElementById("fade-btn");
+        fade.onclick = function () {
+            setTimeout(fado.style.background = white, 3000);
 
-            fade.innerHTML="淡入"
+            fade.innerHTML = "淡入"
         }
-        </script>
+    </script>
 </body>
-</html>        
+
+</html>
+
+
+<html>
+
+<head>
     <style>
         .palette {
             margin: 0;
@@ -52,22 +58,23 @@
 
     <script>
         /* var list = document.querySelectorAll("li");
-       for (var i =0, len = list.length; i < len; i++) {
-            list[i].onclick = function(e) {
-                var t = e.target;
-                var c = t.style.backgroundColor;
-                var p = document.getElementsByClassName("color-picker")[0]
-                p.innerHTML = c;
-                p.style.color = c;
+                       for (var i =0, len = list.length; i < len; i++) {
+                            list[i].onclick = function(e) {
+                                var t = e.target;
+                                var c = t.style.backgroundColor;
+                                var p = document.getElementsByClassName("color-picker")[0]
+                                p.innerHTML = c;
+                                p.style.color = c;
 
-            }
-        }*/
+                            }
+                        }*/
         var pal = document.querySelector("ul");
 
-        pal.addEventListener("click",showc)
-        function  showc(e) {
+        pal.addEventListener("click", showc)
+
+        function showc(e) {
             var t = e.target || e.srcElement;
-            if(t.nodeName.toLowerCase() == "li") {
+            if (t.nodeName.toLowerCase() == "li") {
                 var cc = t.style.backgroundColor;
                 var p = document.querySelector("p");
                 p.innerHTML = cc;
