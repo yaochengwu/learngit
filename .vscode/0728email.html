@@ -30,12 +30,12 @@
         function inpv() {
             var inpval = inp.value;
             inpval = inpval.replace(/\s/g, ""); //去空格
-            inpval = inpval.replace(/&/g, "&");
-            inpval = inpval.replace(/</g, "<");
-            inpval = inpval.replace(/>/g, ">");
-            inpval = inpval.replace(/ /g, " ");
-            inpval = inpval.replace(/\'/g, "'");
-            inpval = inpval.replace(/\"/g, ""); //转义(/\"/g, """)没法显示，无解啊
+            inpval = inpval.replace(/&/g, "&amp;");
+            inpval = inpval.replace(/</g, "&lt;");
+            inpval = inpval.replace(/>/g, "&gt;");
+            inpval = inpval.replace(/ /g, "&nbsp;");
+            inpval = inpval.replace(/\'/g, "&#39;");
+            inpval = inpval.replace(/\"/g, "&quot;"); //转译编码，(/\"/g, """)没法显示
             return inpval;
         }
 
@@ -48,9 +48,10 @@
                 val = val.slice(0, val.indexOf("@"));
 
                 for (i = 0; i < postfixList.length; i++) {
-                    var post = postfixList[i];
-                    if (post.indexOf(mval) == 0) {
-                        addlist();
+                    var post = new RegExp(mval, "i");
+
+                    if (post.test(postfixList[i].textContent)) {
+                        addlist(); //???Why it doesn't work
 
                     }
                 }
@@ -68,12 +69,12 @@
             }
 
             function addlist() {
-                val = val.replace(/&/g, "&");
-                val = val.replace(/</g, "<");
-                val = val.replace(/>/g, ">");
-                val = val.replace(/ /g, " ");
-                val = val.replace(/'/g, "\'");
-                val = val.replace(/"/g, "\""); //解码,到底解了没有啊，愁人
+                val = val.replace(/&amp;/g, "&");
+                val = val.replace(/&lt;/g, "<");
+                val = val.replace(/&gt;/g, ">");
+                val = val.replace(/&nbsp;/g, " ");
+                val = val.replace(/&#39;/g, "\'");
+                val = val.replace(/&quot;/g, "\""); //解码,到底解了没有啊，愁人
                 var nval = val + "@" + postfixList[i];
                 var addli = document.createElement("li");
                 var addnode = document.createTextNode(nval);
@@ -123,7 +124,14 @@
         function choselist(e) {
             var t = e.target || e.srcElement;
             if (t.nodeName.toLowerCase() == "li") {
-                inp.value = t.innerHTML;
+                var tval = t.innerHTML;
+                tval = tval.replace(/&amp;/g, "&");
+                tval = tval.replace(/&lt;/g, "<");
+                tval = tval.replace(/&gt;/g, ">");
+                tval = tval.replace(/&nbsp;/g, " ");
+                tval = tval.replace(/&#39;/g, "\'");
+                tval = tval.replace(/&quot;/g, "\""); //解了两次码,没整明白为啥
+                inp.value = tval;
                 hidd();
             }
         }
