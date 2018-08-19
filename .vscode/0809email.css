@@ -1,4 +1,4 @@
-#maillist, #register .toemail  iframe {
+#maillist, #register .toemail iframe {
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
@@ -17,16 +17,16 @@
     z-index: 999;
 }
 
-#maillist ul li{
-    color:#666;
-    cursor:pointer;
+#maillist ul li {
+    color: #666;
+    cursor: pointer;
 }
 
-#maillist ul li:hover{
-    color:#999;
+#maillist ul li:hover {
+    color: #999;
 }
 
-.email-sug{   
+.email-sug {
     background: none repeat scroll 0 0 #fff;
     border-color: #ccc #ccc;
     border-image: none;
@@ -42,6 +42,24 @@
     overflow: hidden;
 }
 
-.li{
+li {
     list-style: none;
+}
+
+/*
+ul :nth-child(1) {
+    background-color: rgb(164, 230, 250);
+}
+
+ul :first-child {
+    background-color: rgb(164, 230, 250);
+}
+*/
+
+.select {
+    background-color: rgb(164, 230, 250);
+}
+
+.other {
+    background-color: none;
 }

@@ -24,17 +24,29 @@
 
         inp.oninput = function inputDom() {
 
-            if (keyCode != ) {
-                reset();
+            document.onkeydown = function (e) {
+                var keyNum = window.event ? e.keyCode : e.which;
+                if (keyNum != 13 || 38 || 40) {
+                    reset();
+                }
+
             }//如果按键不是上下&回车，重置选中状态
+
             out();
+
             hs();
+
+
 
 
         }
 
         function reset() {
-
+            var sel = document.getElementsByClassName("select");
+            if (sel != list[0]) {
+                sel.className = "other";
+                list[0].className = "select";
+            }
         }
         //重置选中状态
 
