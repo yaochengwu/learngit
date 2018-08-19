@@ -23,9 +23,20 @@
         var list = document.getElementById("email-sug-wrapper");
 
         inp.oninput = function inputDom() {
+
+            if (keyCode != ) {
+                reset();
+            }//如果按键不是上下&回车，重置选中状态
             out();
             hs();
+
+
         }
+
+        function reset() {
+
+        }
+        //重置选中状态
 
         function inpv() {
             var inpval = inp.value;
