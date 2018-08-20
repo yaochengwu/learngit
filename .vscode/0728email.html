@@ -54,10 +54,17 @@
                     tval = tval.replace(/&gt;/g, ">");
                     tval = tval.replace(/&nbsp;/g, " ");
                     tval = tval.replace(/&#39;/g, "\'");
-                    tval = tval.replace(/&quot;/g, "\""); //解了两次码,没整明白为啥
+                    tval = tval.replace(/&quot;/g, "\"");
                     inp.value = tval;
                     hidd();
                 }
+
+                if (keyNum == 27) {
+                    for (i = 0; i++; i < inp.length) {
+                        var che = inp[i];
+                        che.checked = true;
+                    }
+                }//按ESC，全选
             }//如果按键不是上下&回车，重置选中状态
 
             out();
