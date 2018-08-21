@@ -22,19 +22,69 @@
         var inp = document.getElementById("email-input");
         var list = document.getElementById("email-sug-wrapper");
 
+        var nowSelectTipIndex = 0;
+        document.getElementById("email-input").focus();//设置输入框焦点
         inp.oninput = function inputDom() {
 
-            if (keyCode != ) {
-                reset();
+            document.onkeydown = function (e) {
+                var keyNum = window.event ? e.keyCode : e.which;
+                if (keyNum != 13 || 38 || 40) {
+                    reset();
+                }
+                if (keyNum == 38) {
+
+                    if (nowSelectTipIndex != 0) {
+                        nowSelectTipIndex = nowSelectTipIndex - 1;
+                    } else {
+                        nowSelectTipIndex = 3;
+                    }
+                }
+                if (keyNum == 40) {
+                    if (nowSelectTipIndex = 3) {
+                        nowSelectTipIndex = 0;
+                    } else {
+                        nowSelectTipIndex += 1
+                    }
+                }
+
+                if (keyNum == 13) {
+                    var tval = list[nowSelectTipIndex].innerHTML;
+                    tval = tval.replace(/&amp;/g, "&");
+                    tval = tval.replace(/&lt;/g, "<");
+                    tval = tval.replace(/&gt;/g, ">");
+                    tval = tval.replace(/&nbsp;/g, " ");
+                    tval = tval.replace(/&#39;/g, "\'");
+                    tval = tval.replace(/&quot;/g, "\"");
+                    inp.value = tval;
+                    hidd();
+                }
+
+                if (keyNum == 27) {
+                    for (i = 0; i++; i < inp.length) {
+                        var che = inp[i];
+                        che.checked = true;
+                    }
+                }//按ESC，全选
             }//如果按键不是上下&回车，重置选中状态
+
             out();
+
             hs();
+
+
 
 
         }
 
         function reset() {
-
+            nowSelectTipIndex = 0;
+            /*
+                        var sel = document.getElementsByClassName("select");
+                        if (sel != list[0]) {
+                            sel.className = "other";
+                            list[0].className = "select";
+                        }
+                        */
         }
         //重置选中状态
 
@@ -62,7 +112,7 @@
                     var post = new RegExp(mval, "i");
 
                     if (post.test(postfixList[i].textContent)) {
-                        addlist(); //???Why it doesn't work
+                        addlist(); //???Why it doesn't work,boom
 
                     }
                 }
@@ -91,6 +141,7 @@
                 var addnode = document.createTextNode(nval);
                 addli.appendChild(addnode);
                 list.appendChild(addli);
+                list[nowSelectTipIndex].className = "select";//啥状况哦,booom
             }
 
 
@@ -144,6 +195,7 @@
                 tval = tval.replace(/&quot;/g, "\""); //解了两次码,没整明白为啥
                 inp.value = tval;
                 hidd();
+                document.getElementById("email-input").focus();
             }
         }
     </script>
