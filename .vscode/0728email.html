@@ -25,32 +25,35 @@
         var nowSelectTipIndex = 0;
         document.getElementById("email-input").focus(); //设置输入框焦点
 
+        inp.oninput = function inputDom() {
+
+            out();
+            hs();
+        }
 
 
-        document.onkeyup = function (e) {
+
+        inp.onkeydown = function (e) {
             var keyNum = window.event ? e.keyCode : e.which;
             if (keyNum == 38) {
 
                 if (nowSelectTipIndex == 0) {
-                    nowSelectTipIndex = 3;
+                    nowSelectTipIndex = 4;
                 } else {
-                    nowSelectTipIndex = nowSelectTipIndex - 1;
+                    nowSelectTipIndex--;
                 }
-                document.getElementsByClassName("select").className = "other";
-                document.getElementsByTagName("li")[nowSelectTipIndex].className = "select";
-            }
-            if (keyNum == 40) {
-                if (nowSelectTipIndex == 3) {
+                //  document.getElementsByClassName("select").className = "other";
+                //   document.getElementsByTagName("li")[nowSelectTipIndex].className = "select";
+                out();
+            } else if (keyNum == 40) {
+                if (nowSelectTipIndex == 4) {
                     nowSelectTipIndex = 0;
                 } else {
-                    nowSelectTipIndex = nowSelectTipIndex + 1;
+                    nowSelectTipIndex++;
                 }
-                document.getElementsByClassName("select").className = "other";
-                document.getElementsByTagName("li")[nowSelectTipIndex].className = "select";
-            }//无数BUG中的一个，为啥这么迷呢
-
-
-            if (keyNum == 13) {
+                out();
+            } //无数BUG中的一个，为啥这么迷呢
+            else if (keyNum == 13) {
                 var tval = document.getElementsByTagName("li")[nowSelectTipIndex].innerHTML;
                 tval = tval.replace(/&amp;/g, "&");
                 tval = tval.replace(/&lt;/g, "<");
@@ -60,30 +63,18 @@
                 tval = tval.replace(/&quot;/g, "\"");
                 inp.value = tval;
                 hidd();
-            }
-
-            if (keyNum == 27) {
+            } else if (keyNum == 27) {
                 for (i = 0; i++; i < inp.length) {
 
                     inp[i].checked = true;
                 }
             } //按ESC，全选
 
-
-
-            inp.oninput = function inputDom() {
-
-                document.onkeydown = function (e) {
-                    var keyNum = window.event ? e.keyCode : e.which;
-                    if (keyNum != 13 && 38 && 40) {
-                        reset();
-                    }
-                } //如果按键不是上下&回车，重置选中状态
-
-                out();
-
-                hs();
+            var keyNum = window.event ? e.keyCode : e.which;
+            if (keyNum != 13 && 38 && 40) {
+                reset();
             }
+            //如果按键不是上下&回车，重置选中状态
 
 
         }
@@ -125,7 +116,7 @@
 
                     if (post.test(postfixList[i].textContent)) {
                         addlist(); //???Why it doesn't work,boom
-
+                        break;
                     }
                 }
                 if (list.innerHTML = "") {
@@ -147,15 +138,15 @@
                 val = val.replace(/&gt;/g, ">");
                 val = val.replace(/&nbsp;/g, " ");
                 val = val.replace(/&#39;/g, "\'");
-                val = val.replace(/&quot;/g, "\""); //解码,到底解了没有啊，愁人
+                val = val.replace(/&quot;/g, "\""); //解码
                 var nval = val + "@" + postfixList[i];
                 var addli = document.createElement("li");
                 var addnode = document.createTextNode(nval);
                 addli.appendChild(addnode);
                 list.appendChild(addli);
-                // list[nowSelectTipIndex].className = "select";//啥状况哦,booom
-                document.getElementsByTagName("li")[nowSelectTipIndex].className = "select";
+
             }
+            document.getElementsByTagName("li")[nowSelectTipIndex].className = "select";
 
 
         }
