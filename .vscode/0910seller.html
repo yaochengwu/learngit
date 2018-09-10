@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="ife31data.js"></script>
+</head>
+
+<body>
+    <select id="region-select">
+        <option>华东</option>
+        <option>华南</option>
+        <option>华北</option>
+
+    </select>
+
+    <div id="table-wrapper">
+    </div>
+
+    <script>
+        region = document.getElementById("region-select");
+        table = document.getElementById("table-wrapper");
+        region.onchange = function () {
+            renderform(); //位置选项改变就渲染新的表格
+        }
+
+        function getdata() { //根据select选项获取数据
+            for (i = 0; i++; i < region.length) {
+                if (region.option[i].selected == true) {
+                    var regioncon = region.option[i].value;
+                }
+
+                //  向要返回的数据list中添加符合表单所选项的数据
+                sourceData //二叉树？？
+
+            }
+            return regioncon; // 返回数据
+        }
+
+        function renderform() { // 渲染新的表格
+            getdata(); // 根据表单选项获取数据
+            //输出表头
+            var tabcon = document.createElement("table");
+            var tabtr = document.createElement("tr");
+
+            table.appendChild(tabcon);
+            tabcon.appendChild(tabtr);
+
+            var th = ["products", "region", "1", "2", "3"]
+            for (i = 0; i++; i < th.length) {
+                var tabhead = document.createElement("th");
+                var tabheacon = document.createTextNode(th[i]);
+                tabhead.appendChild(tabheacon);
+                tabtr.appendChild(tabhead);
+            }
+            //搞数据
+
+
+
+        }
+    </script>
+</body>
+
+</html>
