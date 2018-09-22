@@ -29,16 +29,19 @@
         }
 
         function getdata() { //根据select选项获取数据
-            for (i = 0; i++; i < region.length) {
-                if (region.option[i].selected == true) {
-                    var regioncon = region.option[i].value;
+            var selindex = region.selectedIndex;
+            var regioncon = region.options[selindex].value;
+            var tablist = [];
+            for (i = 0; i++; i < sourceData.length) {
+                if (sourceData[i].region == regioncon) {
+                    tablist.push(sourceData[i]);
                 }
-
-                //  向要返回的数据list中添加符合表单所选项的数据
-                sourceData //二叉树？？
-
             }
-            return regioncon; // 返回数据
+            //  向要返回的数据list中添加符合表单所选项的数据
+           
+
+
+            return tablist; // 返回数据
         }
 
         function renderform() { // 渲染新的表格
