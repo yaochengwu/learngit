@@ -136,7 +136,7 @@
                 for (let i = 0; i < tipList.length; i++) {
                     if (tipList[i].indexOf(endmatch) !== -1) {
                         tipList = tipList.filter((item) => {
-                            return item.indexOf(endmatch) === 0;
+                            return item.indexOf(endmatch) === 0;//直接筛选?
                         })
                         break;
                     }
