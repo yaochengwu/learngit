@@ -4,10 +4,24 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Seller</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="ife31data.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            border: 1px solid gray;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid gray;
+            padding: 2px 5px 1px 2px;
+        }
+    </style>
 </head>
 
 <body>
@@ -22,10 +36,12 @@
     </div>
 
     <script>
-        region = document.getElementById("region-select");
-        table = document.getElementById("table-wrapper");
+        var region = document.getElementById("region-select");
+        var table = document.getElementById("table-wrapper");
         region.onchange = function () {
+
             renderform(); //位置选项改变就渲染新的表格
+
         }
 
         function getdata() { //根据select选项获取数据
@@ -37,33 +53,31 @@
                     tablist.push(sourceData[i]);
                 }
             }
-            //  向要返回的数据list中添加符合表单所选项的数据
-           
+            //  向要返回的数据list中添加符合表单所选项的数据        
 
 
             return tablist; // 返回数据
         }
 
         function renderform() { // 渲染新的表格
-            getdata(); // 根据表单选项获取数据
+            var tablist = getdata(); // 根据表单选项获取数据
             //输出表头
             var tabcon = document.createElement("table");
             var tabtr = document.createElement("tr");
 
-            table.appendChild(tabcon);
-            tabcon.appendChild(tabtr);
+            var th = ["products", "region", "1", "2", "3"];
 
-            var th = ["products", "region", "1", "2", "3"]
-            for (i = 0; i++; i < th.length) {
+            for (var i = 0; i < th.length; i++) {
+                //  console.log(th[i]);
                 var tabhead = document.createElement("th");
                 var tabheacon = document.createTextNode(th[i]);
                 tabhead.appendChild(tabheacon);
                 tabtr.appendChild(tabhead);
             }
             //搞数据
+            tabcon.appendChild(tabtr);
 
-
-
+            table.appendChild(tabcon);//表格放到div中
         }
     </script>
 </body>
