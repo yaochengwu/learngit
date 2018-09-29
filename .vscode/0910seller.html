@@ -47,49 +47,67 @@
         function getdata() { //根据select选项获取数据
             var selindex = region.selectedIndex;
             var regioncon = region.options[selindex].value;
+
             var tablist = [];
-            for (i = 0; i++; i < sourceData.length) {
+            for (var i = 0; i < sourceData.length; i++) { //？？？原来for还有格式要求嘛
+
                 if (sourceData[i].region == regioncon) {
                     tablist.push(sourceData[i]);
+
                 }
             }
             //  向要返回的数据list中添加符合表单所选项的数据        
 
-
             return tablist; // 返回数据
+
         }
 
         function renderform() { // 渲染新的表格
             var tablist = getdata(); // 根据表单选项获取数据
-            //输出表头
-            var tabcon = document.createElement("table");
-            var tabtr = document.createElement("tr");
+            console.log(tablist);
 
-            var th = ["products", "region", "1", "2", "3","4","5","6","7","8","9","10","11","12"];
+            var tabcon = document.createElement("table");
+            //输出表头
+            var tabtr = document.createElement("tr");
+            var th = ["product", "region", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
 
             for (var i = 0; i < th.length; i++) {
-                //  console.log(th[i]);
+
                 var tabhead = document.createElement("th");
                 var tabheacon = document.createTextNode(th[i]);
                 tabhead.appendChild(tabheacon);
                 tabtr.appendChild(tabhead);
             }
+            tabcon.appendChild(tabtr); //表头放到tr中
 
             //搞数据
 
 
+            for (var i = 0; i < tablist.length; i++) {
+                var tabtr = document.createElement("tr");
+
+                var tabdata1 = document.createElement("td");
+                var tabdatapro = document.createTextNode(tablist[i].product);
+                tabdata1.appendChild(tabdatapro);
+                tabtr.appendChild(tabdata1);
+
+                var tabdata2 = document.createElement("td");
+                var tabdatareg = document.createTextNode(tablist[i].region);
+                tabdata2.appendChild(tabdatareg);
+                tabtr.appendChild(tabdata2);
+
+                for (var j = 0; j < 12; j++) {
+                    var tabdata = document.createElement("td");
+                    var tabdatasale = document.createTextNode(tablist[i].sale[j]);
+                    tabdata.appendChild(tabdatasale);
+                    tabtr.appendChild(tabdata);
+                }
 
 
+                tabcon.appendChild(tabtr);
+            }
 
-
-
-
-
-
-
-
-            tabcon.appendChild(tabtr);//表格放到div中
-            table.appendChild(tabcon); 
+            table.appendChild(tabcon); //表格放到div中
         }
     </script>
 </body>
