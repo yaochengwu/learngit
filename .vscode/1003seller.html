@@ -27,17 +27,17 @@
 <body>
     <div id="selects">
         <div id="region-select">
-            <input type="checkbox" value="1" checkbox-type="all" />全选
-            <input type="checkbox" value="2" checkbox-type="single" />华东
-            <input type="checkbox" value="3" checkbox-type="single" />华南
-            <input type="checkbox" value="4" checkbox-type="single" />华北
+            <input type="checkbox" value="1" checktype="all" />全选
+            <input type="checkbox" value="2" checktype="single" />华东
+            <input type="checkbox" value="3" checktype="single" />华南
+            <input type="checkbox" value="4" checktype="single" />华北
         </div>
 
         <div id="product-select">
-            <input type="checkbox" value="1" checkbox-type="all" />全选
-            <input type="checkbox" value="2" checkbox-type="single" />手机
-            <input type="checkbox" value="3" checkbox-type="single" />笔记本
-            <input type="checkbox" value="4" checkbox-type="single" />智能音箱
+            <input type="checkbox" value="1" checktype="all" />全选
+            <input type="checkbox" value="2" checktype="single" />手机
+            <input type="checkbox" value="3" checktype="single" />笔记本
+            <input type="checkbox" value="4" checktype="single" />智能音箱
         </div>
     </div>
 
@@ -52,33 +52,73 @@
         var table = document.getElementById("table-wrapper");
         var product = document.getElementById("product-select")
 
-        var checkbox = document.querySelectorAll("input");
+        var regionbox = region.querySelectorAll("input");
 
+        var productbox = product.querySelectorAll("input");
 
+        //绑定全选事件
+        regionbox[0].onclick = function () {
+            allclick(regionbox);
+        }
 
+        productbox[0].onclick = function () {
+            allclick(productbox);
+        }
 
+        function allclick(checkbox) { //全选
+            if (checkbox[0].checked == true) {
+                for (i = 1; i < 4; i++) {
+                    if (checkbox[i].checked == false) {
+                        checkbox[i].checked = true;
 
-        selects.onchange = function () {
-
-            //绑定全选事件
-            for (i = 0; i < checkbox.length; i++) {
-                if (checkbox[i].Checked == true) {
-                    if (checkbox[i].checkbox - type == "all") {
-                        checkbox.Checked = true;
-                    }
-                    else if (checkbox[i].checkbox - type == "single") {
-                        if (checkbox.isChecked()) {
-                            checkbox.setChecked(true);
-                        }
                     }
                 }
             }
+            if (checkbox[0].checked == false) {
+                var j = 0;
+                for (i = 1; i < 4; i++) {
+                    if (checkbox[i].checked == true) {
+                        j++ // console.log("?")
+                    }
+                }
+                if (j == 3) {
+                    checkbox[0].checked = true;
+                }
+            }
+        }
+
+        //绑定单选事件
+        regionbox[1].onclick = function () {
+            var checknumber = singleclick(regionbox);
+            if (checknumber == 1) {
+                regionbox[1].checked = true;
+              //  console.log(singleclick(regionbox));
+            }
+         
+        }
+
+        function singleclick(checkbox) { //单选
+            //  console.log("1")
+            var j = 0;
+            for (i = 1; i < 4; i++) {
+                if (checkbox[i].checked == true) {
+                    j++ // console.log("?")
+                }
+            }
+            if (j == 3) {
+                checkbox[0].checked = true;
+            }
+            if (j < 3) {
+                checkbox[0].checked = false; //是否勾选全选
+            }
+            if (j == 0) {
+                return 1;
+            }
+        }
 
 
-
-
-
-            renderform(); //位置选项改变就渲染新的表格
+        select.onchange = function () {
+            //renderform(); //位置选项改变就渲染新的表格
         }
 
         function getdata() { //根据select选项获取数据
