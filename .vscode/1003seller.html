@@ -89,15 +89,25 @@
 
         //绑定单选事件
         regionbox[1].onclick = function () {
-            var checknumber = singleclick(regionbox);
-            if (checknumber == 1) {
-                regionbox[1].checked = true;
-              //  console.log(singleclick(regionbox));
-            }
-         
+            singleclick(regionbox, regionbox[1]);
+        }
+        regionbox[2].onclick = function () {
+            singleclick(regionbox, regionbox[2]);
+        }
+        regionbox[3].onclick = function () {
+            singleclick(regionbox, regionbox[3]);
+        }
+        productbox[1].onclick = function () {
+            singleclick(productbox, productbox[1]);
+        }
+        productbox[2].onclick = function () {
+            singleclick(productbox, productbox[2]);
+        }
+        productbox[3].onclick = function () {
+            singleclick(productbox, productbox[3]);
         }
 
-        function singleclick(checkbox) { //单选
+        function singleclick(checkbox, targetbox) { //单选
             //  console.log("1")
             var j = 0;
             for (i = 1; i < 4; i++) {
@@ -112,13 +122,13 @@
                 checkbox[0].checked = false; //是否勾选全选
             }
             if (j == 0) {
-                return 1;
+                targetbox.checked = true; //必须选一个
             }
         }
 
 
         select.onchange = function () {
-            //renderform(); //位置选项改变就渲染新的表格
+            renderform(); //位置选项改变就渲染新的表格
         }
 
         function getdata() { //根据select选项获取数据
