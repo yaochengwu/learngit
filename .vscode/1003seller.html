@@ -27,17 +27,17 @@
 <body>
     <div id="selects">
         <div id="region-select">
-            <input type="checkbox" value="1" checktype="all" />全选
-            <input type="checkbox" value="2" checktype="single" />华东
-            <input type="checkbox" value="3" checktype="single" />华南
-            <input type="checkbox" value="4" checktype="single" />华北
+            <input type="checkbox" value="全选" checktype="all" />全选
+            <input type="checkbox" value="华东" checktype="single" />华东
+            <input type="checkbox" value="华南" checktype="single" />华南
+            <input type="checkbox" value="华北" checktype="single" />华北
         </div>
 
         <div id="product-select">
-            <input type="checkbox" value="1" checktype="all" />全选
-            <input type="checkbox" value="2" checktype="single" />手机
-            <input type="checkbox" value="3" checktype="single" />笔记本
-            <input type="checkbox" value="4" checktype="single" />智能音箱
+            <input type="checkbox" value="全选" checktype="all" />全选
+            <input type="checkbox" value="手机" checktype="single" />手机
+            <input type="checkbox" value="笔记本" checktype="single" />笔记本
+            <input type="checkbox" value="智能音箱" checktype="single" />智能音箱
         </div>
     </div>
 
@@ -78,7 +78,7 @@
                 var j = 0;
                 for (i = 1; i < 4; i++) {
                     if (checkbox[i].checked == true) {
-                        j++ // console.log("?")
+                        j++
                     }
                 }
                 if (j == 3) {
@@ -108,11 +108,10 @@
         }
 
         function singleclick(checkbox, targetbox) { //单选
-            //  console.log("1")
             var j = 0;
             for (i = 1; i < 4; i++) {
                 if (checkbox[i].checked == true) {
-                    j++ // console.log("?")
+                    j++
                 }
             }
             if (j == 3) {
@@ -132,38 +131,53 @@
         }
 
         function getdata() { //根据select选项获取数据
-            var selindex = region.selectedIndex;
-            var regioncon = region.options[selindex].value;
-
-            var selindex1 = product.selectedIndex;
-            var procon = product.options[selindex1].value;
-
+            var regioncon;
+            var procon;
             var tablist = [];
-            for (var i = 0; i < sourceData.length; i++) { //？？？原来for还有格式要求嘛
-
-                if (sourceData[i].region == regioncon && sourceData[i].product == procon) {
-                    tablist.push(sourceData[i]);
-
+            for (var j = 0; j < 4; j++) {
+                if (productbox[j].checked) {
+                    procon = productbox[j].value;
+                    for (var i = 0; i < 4; i++) {
+                        if (regionbox[i].checked) {
+                            regioncon = regionbox[i].value;
+                            for (var k = 0; k < sourceData.length; k++) { //？？？原来for还有格式要求嘛
+                                if (sourceData[k].region == regioncon && sourceData[k].product == procon) {
+                                    tablist.push(sourceData[k]);
+                                }
+                            }
+                        }
+                    }
                 }
             }
-            //  向要返回的数据list中添加符合表单所选项的数据        
-
+            //  向要返回的数据list中添加符合表单所选项的数据  
             return tablist; // 返回数据
-
         }
 
         function renderform() { // 渲染新的表格
             table.innerHTML = ""; //clear out the table
             var tablist = getdata(); // 根据表单选项获取数据
-            console.log(tablist);
+            var regionnum = 0;
+            var row1;
+            var row2;
+            for (var i = 1; i < 4; i++) {
+                if (regionbox[i].checked == true) {
+                    regionnum++
+                }
+            }
+            if (regionnum == 1) { //只有一个地址时，第一列是地址
+                row1 = "region";
+                row2 = "product";
+            } else {
+                row1 = "product";
+                row2 = "region";
+            }
 
             var tabcon = document.createElement("table");
             //输出表头
             var tabtr = document.createElement("tr");
-            var th = ["product", "region", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+            var th = [row1, row2, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
 
             for (var i = 0; i < th.length; i++) {
-
                 var tabhead = document.createElement("th");
                 var tabheacon = document.createTextNode(th[i]);
                 tabhead.appendChild(tabheacon);
@@ -173,19 +187,41 @@
 
             //搞数据
 
-
             for (var i = 0; i < tablist.length; i++) {
-                var tabtr = document.createElement("tr");
+                var tabtr = document.createElement("tr"); //行
 
-                var tabdata1 = document.createElement("td");
+                var tabdatap = document.createElement("td"); //产品
                 var tabdatapro = document.createTextNode(tablist[i].product);
-                tabdata1.appendChild(tabdatapro);
-                tabtr.appendChild(tabdata1);
+                tabdatap.appendChild(tabdatapro);
 
-                var tabdata2 = document.createElement("td");
+
+                var tabdatar = document.createElement("td"); //位置
                 var tabdatareg = document.createTextNode(tablist[i].region);
-                tabdata2.appendChild(tabdatareg);
-                tabtr.appendChild(tabdata2);
+                tabdatar.appendChild(tabdatareg);
+
+                //塞到行里
+                if (regionnum == 1) { //只有一个地址时，第一列是地址
+                    // console.log(i);
+                    if (i == 0) {
+                        tabdatar.rowSpan = tablist.length;
+                        tabtr.appendChild(tabdatar); //数据塞入行
+                        tabtr.appendChild(tabdatap);
+                    } else {
+                        tabtr.appendChild(tabdatap); //不需要再加地址信息
+                    }
+
+                } else {
+                    if (i % regionnum == 0) {
+                        tabdatap.rowSpan = regionnum;
+                        tabtr.appendChild(tabdatap);
+                        tabtr.appendChild(tabdatar);
+                    } else {
+                        tabtr.appendChild(tabdatar);
+                    }
+
+
+                }
+
 
                 for (var j = 0; j < 12; j++) {
                     var tabdata = document.createElement("td");
