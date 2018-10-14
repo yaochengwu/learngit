@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Seller</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="table.js"></script>
+    <script src="checkbox.js"></script>
+    <script src="getData.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            border: 1px solid gray;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid gray;
+            padding: 2px 5px 1px 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="selects">
+        <div id="region-select">
+            <input type="checkbox" value="全选" checktype="all" />全选
+            <input type="checkbox" value="华东" checktype="single" />华东
+            <input type="checkbox" value="华南" checktype="single" />华南
+            <input type="checkbox" value="华北" checktype="single" />华北
+        </div>
+
+        <div id="product-select">
+            <input type="checkbox" value="全选" checktype="all" />全选
+            <input type="checkbox" value="手机" checktype="single" />手机
+            <input type="checkbox" value="笔记本" checktype="single" />笔记本
+            <input type="checkbox" value="智能音箱" checktype="single" />智能音箱
+        </div>
+    </div>
+
+
+    <div id="table-wrapper">
+    </div>
+    <!--//装表格-->
+
+    <script>
+        var select = document.getElementById("selects");
+        var region = document.getElementById("region-select");
+        var table = document.getElementById("table-wrapper");
+        var product = document.getElementById("product-select")
+
+        var regionbox = region.querySelectorAll("input");
+
+        var productbox = product.querySelectorAll("input");
+
+        //绑定全选事件
+        regionbox[0].onclick = function () {
+            allclick(regionbox);
+        }
+
+        productbox[0].onclick = function () {
+            allclick(productbox);
+        }
+
+ 
+
+        //绑定单选事件
+        regionbox[1].onclick = function () {
+            singleclick(regionbox, regionbox[1]);
+        }
+        regionbox[2].onclick = function () {
+            singleclick(regionbox, regionbox[2]);
+        }
+        regionbox[3].onclick = function () {
+            singleclick(regionbox, regionbox[3]);
+        }
+        productbox[1].onclick = function () {
+            singleclick(productbox, productbox[1]);
+        }
+        productbox[2].onclick = function () {
+            singleclick(productbox, productbox[2]);
+        }
+        productbox[3].onclick = function () {
+            singleclick(productbox, productbox[3]);
+        }
+
+   
+        select.onchange = function () {
+            renderform(); //位置选项改变就渲染新的表格
+        }
+
+  
+    </script>
+</body>
+
+</html>
